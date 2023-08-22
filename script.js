@@ -1,37 +1,32 @@
 // Computer has a random choice of rock, paper, or scissors
-function getComputerChoice(choice) {
-  
-return choice[Math.floor(Math.random()*choice.length)];
+function getComputerChoice() {
+    const choice = ["rock", "paper", "scissors"];
+    return choice[Math.floor(Math.random()*choice.length)];
+    }
 
-}
-
-const choice = ["rock", "paper", "scissors"];
-
-console.log(getComputerChoice(choice));
-// User is prompted to input their choice of rock, paper, or scissors
-const getPlayerSelection = prompt("Choose rock, paper, or scissors");
-
-console.log(getPlayerSelection)
+console.log(getComputerChoice());
 // Test is run to find a result
 function playRound(playerSelection, computerSelection) {
-    // If user ties computer display tie message
-    if (playerSelection === "rock" && computerSelection === "rock") {
-        return "It's a tie! You both chose Rock";
-    } 
-    // If user loses to computer play losing message
-    else if (playerSelection === "rock" && computerSelection === "paper") {
-        return "You lose! Paper beats Rock";
-    }
-    // If user beats computer display win message 
-    else {
+// If user ties computer display tie message
+    if (playerSelection === computerSelection) {
+        return `It's a tie! You both chose ${playerSelection}`;
+// If user beats computer display win message
+    } else if (playerSelection === "rock" && computerSelection === "scissors") {
         return "You win! Rock beats Scissors";
+    } else if (playerSelection === "paper" && computerSelection === "rock") {
+        return "You win! Paper beats Rock";
+    } else if (playerSelection === "scissors" && computerSelection === "paper") {
+        return "You win! Scissors beats Paper";
+// If user loses to computer play losing message
+    } else {
+        return `You lose ${computerSelection} beats ${playerSelection}`;
     }
-    // If user ties computer display tie message
   }
-   
-  const playerSelection = getPlayerSelection.toLowerCase;
-  const computerSelection = getComputerChoice(choice);
 
-  console.log(playRound(playerSelection, computerSelection));
+// User is prompted to input their choice of rock, paper, or scissors
+const playerSelection = prompt("Can you beat the machine!? Make a choice of either Rock, Paper, or Scissors").toLowerCase();
+console.log(playerSelection)
+const computerSelection = getComputerChoice();
+console.log(playRound(playerSelection, computerSelection));
 
 // Prompt user again until there is a score of 5 wins.
