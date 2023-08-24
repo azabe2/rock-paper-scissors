@@ -8,7 +8,6 @@ console.log(computerSelection);
 let playerSelection = prompt("Can you beat the machine!? Make a choice of either Rock, Paper, or Scissors").toLowerCase();
 console.log(playerSelection);
 
-
 function playRound(playerSelection, computerSelection) {
   if (playerSelection === computerSelection) {
     return draw;
