@@ -1,33 +1,76 @@
 function getComputerChoice() {
     const choice = ["rock", "paper", "scissors"];
     return choice[Math.floor(Math.random()*choice.length)];
-}
+  }
+
+let computerSelection = getComputerChoice();
+console.log(computerSelection);
+let playerSelection = prompt("Can you beat the machine!? Make a choice of either Rock, Paper, or Scissors").toLowerCase();
+console.log(playerSelection);
+
 
 function playRound(playerSelection, computerSelection) {
   if (playerSelection === computerSelection) {
-    return `It's a tie! You both chose ${playerSelection}`;
+    return draw;
     } else if (playerSelection === "rock" && computerSelection === "scissors") {
-      playerScore++;
-      return "You win! Rock beats Scissors.";
+    return win1;
     } else if (playerSelection === "paper" && computerSelection === "rock") {
-      playerScore++;
-      return "You win! Paper beats Rock.";
+    return win2;
     } else if (playerSelection === "scissors" && computerSelection === "paper") {
-      playerScore++;
-      return "You win! Scissors beats Paper.";
+    return win3;
     } else {
-      computerScore++;
-      return `You lose ${computerSelection} beats ${playerSelection}.`;
+    return lose;
     }
   }
+
+const draw = `It's a tie! You both chose ${playerSelection}`;
+const win1 = "You win! Rock beats Scissors.";
+const win2 = "You win! Paper beats Rock.";
+const win3 = "You win! Scissors beats Paper.";
+const lose = `You lose ${computerSelection} beats ${playerSelection}.`
+
+function game() {
+  for (let i = 0; i < 5; i++) {
+    const result = playRound(playerSelection, computerSelection);
+    switch (result) {
+      case win1:
+        playerScore++;
+        console.log(win1);
+        console.log(`Player score: ${playerScore} Computer score: ${computerScore}`);
+        break;
+      case win2:
+        playerScore++;
+        console.log(win2);
+        console.log(`Player score: ${playerScore} Computer score: ${computerScore}`);
+        break;
+      case win3:
+        playerScore++;
+        console.log(win3);
+        console.log(`Player score: ${playerScore} Computer score: ${computerScore}`);
+        break;
+      case lose:
+        computerScore++;
+        console.log(lose);
+        console.log(`Player score: ${playerScore} Computer score: ${computerScore}`);
+        break;
+      default:
+        console.log(draw);
+        console.log(`Player score: ${playerScore} Computer score: ${computerScore}`);
+        break;
+      }
+  }
+  console.log("Final Results: Player: " + playerScore + " Computer: " + computerScore);
+  if (playerScore > computerScore) {
+    console.log("Congratulations! You have beaten the machine.");
+  } else if (playerScore < computerScore) {
+    console.log("Oh no! The machine has beaten you, you lose the game.");
+  } else {
+    console.log("You have found a worthy opponent. The machine lives to fight another day.");
+  }
+}
 
 let playerScore = 0;
 let computerScore = 0;
 
+game();
 
-const computerSelection = getComputerChoice();
-console.log(computerSelection);
-const playerSelection = prompt("Can you beat the machine!? Make a choice of either Rock, Paper, or Scissors").toLowerCase();
-console.log(playerSelection);
-console.log(playRound(playerSelection, computerSelection));
-console.log(`Player score: ${playerScore} Computer score: ${computerScore}`);
