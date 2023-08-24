@@ -3,13 +3,12 @@ function getComputerChoice() {
     return choice[Math.floor(Math.random()*choice.length)];
   }
 
-let computerSelection = getComputerChoice();
-console.log(computerSelection);
-let playerSelection = prompt("Can you beat the machine!? Make a choice of either Rock, Paper, or Scissors").toLowerCase();
-console.log(playerSelection);
-
-function playRound(playerSelection, computerSelection) {
-  if (playerSelection === computerSelection) {
+function playRound() {
+  let computerSelection = getComputerChoice();
+  console.log(computerSelection);
+  let playerSelection = prompt("Can you beat the machine!? Make a choice of either Rock, Paper, or Scissors").toLowerCase();
+  console.log(playerSelection);
+    if (playerSelection === computerSelection) {
     return draw;
     } else if (playerSelection === "rock" && computerSelection === "scissors") {
     return win1;
@@ -22,15 +21,15 @@ function playRound(playerSelection, computerSelection) {
     }
   }
 
-const draw = `It's a tie! You both chose ${playerSelection}`;
+const draw = "It's a tie! You both chose";
 const win1 = "You win! Rock beats Scissors.";
 const win2 = "You win! Paper beats Rock.";
 const win3 = "You win! Scissors beats Paper.";
-const lose = `You lose ${computerSelection} beats ${playerSelection}.`
+const lose = "You lose!";
 
 function game() {
   for (let i = 0; i < 5; i++) {
-    const result = playRound(playerSelection, computerSelection);
+    const result = playRound();
     switch (result) {
       case win1:
         playerScore++;
